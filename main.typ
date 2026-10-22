@@ -29,25 +29,25 @@
 
 $* h[n] = 0 quad "for" n >= M <- "(Def"^n": FIR)" $ 
 
-= Causal FIR:
+= #underline("Causal FIR:")
 
 $ y[n] = sum_(k=-infinity)^infinity h[k] x[n-k] "{original LTI system}" $ 
 $ = sum_(k=0)^(M-1) h[k]x[n-k] $
-$ = sum_(k=0)^(M-1) b_k x[n-k] $
+$ = sum_(k=0)^(M-1) b_k x[n-k] "where," x = "multiplier of" b_k $
 
-= Causal FIR Filter Realization:
+= #underline("* Causal FIR Filter Realization")
 
 $ y[n] = sum_(k=0)^(M-1) b_k x[n-k] $
 $ ==> Y(Z)/X(Z) = H(Z) = sum_(k=0)^(M-1)b_k Z^(-k) $
 
-= 2. Cascade - Form:
+= #underline("(2.) Cascade - Form:")
 
 $ H(Z) = sum_(k=0)^(M-1) b_k Z^(-k) $
 $ "Modify: " H(Z) = product_(k=1)^(kappa) H_k (Z) $
-$ "where," $
+where,
 $ H_k (Z) = b_k_0 + b_K_1 Z^(-1) + b_k_2 Z^(-2) "&" "k" = "integer part of " (M+1)/2 $
 
-= 3. Lattice Structure:
+= #underline("(3.) Lattice Structure:")
 
 $ H(Z) = "given" $
 
@@ -66,7 +66,7 @@ $ A_0 (Z) = B_0 (Z) = 1 $
 $ A_m (Z) = A_(m-1) (Z) + K_m Z^(-1) B_(m-1) (Z) $
 $ B_m (Z) = K_m A_(m-1) (Z) + Z^(-1) B_(m-1) (Z) $
 
-= IIR Filter Structure: 
+= #underline("IIR Filter Structure: ")
 
 $ sum_(k=0)^(N) a_k y[n-k] = sum_(k=0)^(M) b_k x[n-k] $
 $ H(Z) = Y(Z)/X(Z) = (sum_(k=0)^(M) b_k Z^(-k))/(1 + sum_(k=1)^(N) a_k Z^(-k)) $
@@ -74,19 +74,20 @@ $ = H_1 (Z).H_2 (Z) $
 $ "where," H_1 (Z) = sum_(k=0)^(M) b_k Z^(-k) $
 $ H_2 (Z) = 1 / (1 + sum_(k=1)^(N) a_k Z^(-k)) $
 
-= Cascade Structure: 
+= #underline("Cascade Structure")
 
 $ H(Z) = product_(k=1)^(P) H_k (P) $
 $ " where" $
 $ H_k (P) = (b_k_0 + b_k_1 Z^(-1) + b_k_2 Z^(-2)) / (1 + a_k_1 Z^(-1) + a_k_2 Z^(-2)) $ 
 $ "& P = integer part of" ((N+1)/2)  $
 
-= 3. Lattice or Lattice-Ladder Structure:
+= #underline("(3.) Lattice or Lattice-Ladder Structure:")
 
 $ H(Z) = P(Z)/Q(Z) $
 $ "Let" A_m (Z) = Q(Z) ==> "Do as in FIR" $
 $ C_(m-1) (Z) = C_m (Z) - U_m B_m (Z) " , " U_m = C_m (m) $
  $ "where" C_m (Z) = P(Z). $
+ $ U_m = "Ladder Coefficient" $
 
  #pagebreak()
 
@@ -171,7 +172,7 @@ $ = cases(
 $ h_("lp") = F^(-1) [H_("lp") ("jw")] $
 $ = sin[w_c (n- M/2)]/(pi (n - M/2)) $
 $ = w_c/(pi) sin[w_c (n- M/2)]/(w_c (n- M/2)) $
-$ = w_c/(pi) sinc[w_c (n- M/2)]. $
+$ = w_c/(pi). sinc[w_c (n- M/2)]. $
 
 $ "symmetric:" h_("lp")[n] = h_("lp")[M-N] $
 
@@ -179,7 +180,7 @@ $ "symmetric:" h_("lp")[n] = h_("lp")[M-N] $
 
 = #underline("Kaiser Window: ")
 $ w[n] = cases(
-I_0 ((beta sqrt(1-[((n-alpha)/alpha)^2]))) / (I_0 (beta)) &"," 0 <= n <= M,
+I_0 [(beta sqrt(1-[((n-alpha)/alpha)^2]))] / (I_0 (beta)) &"," 0 <= n <= M,
 0 &"," "otherwise"
 )  $
 $ alpha = M/2 $
@@ -202,15 +203,22 @@ $ w_c = (w_p + w_s)/2 $
 $ = (w_1 + w_2)/2 $
 
 $ "stopband attenuation" (A_s) = -20 log_10 (delta), delta = min (delta_1, delta_2) $
-$ " Transition Width" (upright(Delta w)) = w_2 - w_1 = w_s - w_p $
-$ upright(Delta) = "Main lobe width" $
-$ upright(Delta) = (8 pi)/M ==> "Ex." $
+$ " Transition Width" upright(Delta w) = w_2 - w_1 = w_s - w_p $
+$ upright(Delta w) = "Main lobe width." $
+$ upright(Delta w) = (8 pi)/M ==> "Ex." $
 $ w_c = (w_p + w_s)/2 $
 $ N =  "filter length" $
 $ M = "filter order" = N-1 $ 
 
 #underline("For Hamming:")
-$ upright(Delta) = w_s - w_c $
+
+#rect(
+  stroke: 1pt + black,
+  inset: 10pt,         // padding inside the box
+)[
+  $ upright(Delta) = w_s - w_c $
+]
+$ "//. " $
 
 #pagebreak()
 
@@ -231,13 +239,13 @@ $ upright(Delta) = w_s - w_c $
   ]
 
 = (i) #underline("IIR Filter Design using Impulse Invariance.")
-$ "Analog Filter:" H_a(s) = sum_(k=1)^(N) C_k ------->s - P_k , C_k = "constants",  $
+$ "Analog Filter:" H_a (s) = sum_(k=1)^(N) C_k / (S - P_k) "," C_k = "constants" "," P_k = "Poles" . $
 inverse Laplace Transform
 $ h_a (t) = sum_(k=1)^(N) C_k.e^(P_k. t) $
 
 $ h[n] = sum_(k=1)^(N) C_k.e^(P_k eta T) $
  Z-Transform
-$ H(z) = sum_(n=-infinity)^(infinity) h[n] Z^(-n) $
+$ H(Z) = sum_(n=-infinity)^(infinity) h[n].Z^(-n) $
 $ = sum_(n=0)^(infinity) h[n] Z^(-n) $
 $ = sum_(k=1)^(N)  C_k / (1 - e^(P_k T).Z^(-1)) $
 
@@ -245,5 +253,72 @@ $ = sum_(k=1)^(N)  C_k / (1 - e^(P_k T).Z^(-1)) $
   stroke: 1pt + black,
   inset: 10pt,         // padding inside the box
 )[
-  $ "Replace" S - P_k "by" 1 - e^(P_k T) Z^(-1) $
+  $ "Replace" S - P_k "by" 1 - e^(P_k T) Z^(-1) $ 
 ]
+$ "//. " $
+
+= #underline("(2.) Bilinear Transformation")
+
+$ "Let": H_a (s) = b/(s + a) $
+$ . $
+$ . $
+$ . $
+$ H(Z) = b/((2/T)((1-Z^(-1))/(1+Z^(-1)))+a) $
+$ therefore s = 2/T (1 - Z^(-1))/(1+Z^(-1)) $
+$ = j Omega $
+$ => Omega = 2/T tan(omega/2). $
+$ => omega = 2tan^(-1)((Omega T)/2). $
+
+#pagebreak()
+
+= Some commonly used Analog Filters & Their Characteristics:
+
+= #underline("(1.) Butterworth (LPF) Filter:")
+simple,  maximally-flat filter.
+
+$ * |H(Omega)|^2 = 1 / (1+(Omega/Omega_c)^(2N)) $
+Magnitude Response.
+
+$ = 1 / (1 + epsilon^2 (Omega/Omega_p)^(2N)) $
+$ Omega_c = "cut-off freq = 3dB freq." $
+$ N = "Order of filter" $
+$ epsilon = "Scaling factor" (<=1) $
+
+$ * "Poles": S_k = Omega_c e^((j pi)/2).e^((j(2K+1) pi)/(2N)) "," K = 0,1,2,...,N-1 $
+$ * "Order": N = (1/2 log(1/(1-rho_p)^2 -1) - 1/2 log(1/delta_s^(2)-1))/log((Omega_p)/(Omega_s)) $
+$  $ not in dB. $ cases(rho_p = delta_p = delta_1,
+rho_s = delta_s = delta_2,
+)$ 
+
+#underline("OR:")
+
+$ N = (1/2 log[(10^(0.1 A_s)-1)/(10^(0.1 A_p)-1)])/log(Omega_s/Omega_p)$
+$ A_p = "Passband ripple / attenuation" $
+$ A_s = "Stopband ripple / attenuation" $
+
+$ Omega_c = Omega_p/ [1/(1-rho_p)^2 -1]^(1/(2N)) $
+$ H(s) = H_a (s) = Omega_c^N/((s-s_0)(s-s_1)...) $
+
+= #underline("Chebyshev (LPF) Filter:")
+2 types:$ ->$
+$ "(i)" "Chebyshev" = "Chebyshev - Type I" $
+$ ("ii") "Inverse Chebyshev" = "Chebyshev - Type II" $
+
+#underline("Type - I")
+
+$ * |H(Omega)|^2 = 1/(1+epsilon^2 T_N^2(Omega/Omega_p)) $
+where,
+$ . T_N (x) = cases(
+  "cos"(N "cos"^(-1)x) &"," |x|<=1,
+  cosh(N cosh^(-1)x) &"," |x|>1)) $
+
+$ .epsilon = [1/(1-rho_p)^2-1]^(1/2) $
+
+$ "Poles": x_k + j y_k "," k=0 "to" (N-1) $
+where,
+$ x_k = r_2 cos phi_k $
+$ y_k = r_2 sin phi_k $
+where,
+$ r_2 = Omega_p.(beta^2 -1)/(2beta^2) "," beta = ((sqrt(1+epsilon^2) + 1)/epsilon)^(1/N) $
+$ phi_k = pi / 2 + ((2k+1)pi)/(2N) "// ." $
+
