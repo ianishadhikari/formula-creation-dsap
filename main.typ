@@ -137,28 +137,27 @@ $ C_(m-1) (Z) = C_m (Z) - U_m B_m (Z) " , " U_m = C_m (m) $
 #pagebreak()
 
 #table(
-columns: (1fr, 1fr),
-stroke: none,
+  columns: (auto, 1fr, 1fr), // 3 columns: auto-fit for numbers, then two equal-width columns
+  stroke: none,              // Keeps the boxes/borders removed
   
-  // Row 1
-  [#underline("Main Lobe Width")], [#underline("Peak Approx. Error or stopband attenuation (dB)")],
+  // Row 1 (Header): Empty space for the number column, followed by your two headers
+  [], [#underline("Main Lobe Width")], [#underline("Peak Approx. Error or stopband attenuation (dB)")],
   
   // Row 2
-  [$ (4 pi) / ((M+1)) $], [-21],
+  [1.], [$ (4 pi) / ((M+1)) $], [-21],
   
   // Row 3
-  [$ (8 pi) / M $], [-25],
+  [2.], [$ (8 pi) / M $], [-25],
   
   // Row 4
-  [$ (8 pi) / M $], [-44],
+  [3.], [$ (8 pi) / M $], [-44],
   
   // Row 5
-  [$ (8 pi) / M $], [-53],
+  [4.], [$ (8 pi) / M $], [-53],
 
-  //Row 6
-  [$ (12 pi) / M $], [-74]
+  // Row 6
+  [5.], [$ (12 pi) / M $], [-74]
 )
-
 
 = #underline("Linear - Phase Pass FIR Filter:")
 
