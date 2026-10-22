@@ -8,7 +8,7 @@
 
 The primary motive behind this project was to gain hands-on practice with **Typst**. Coming from a LaTeX background, dealing with complex package dependencies, slow compilation times, and verbose syntax felt increasingly tedious. Typst offers a refreshingly fast, modern, and intuitive alternative for typesetting structured documents and mathematical derivations.
 
-Through transcribing handwritten notes from **Chapters 4, 5, and 6** of Digital Signal Processing (covering Discrete Filter Structures, FIR Filter Design, and IIR Filter Design), this repository serves as a playground for mastering Typst’s math layout, custom styling, non-bordered tables, and document structures.
+Through transcribing handwritten notes from **Chapters 4, 5, and 6** of Digital Signal Analysis and Processing (covering Discrete Filter Structures, FIR Filter Design, and IIR Filter Design), this repository serves as a playground for mastering Typst’s math layout, custom styling, non-bordered tables, and document structures.
 
 ---
 
